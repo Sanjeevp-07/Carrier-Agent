@@ -1,0 +1,47 @@
+npm create tauri-app@latest   (TypeScript,npm)
+
+npm install
+npm run tauri dev
+
+
+Setup RUST
+
+PS C:\Users\Sanjeev\OneDrive\Desktop\Official fille\3CSE1(Official)\7th Semester\AI_Agent\career-agent\ui> rustup toolchain uninstall stable
+warn: removing the active toolchain; a toolchain override will be required for running Rust tools
+warn: removing the default toolchain; proc-macros and build scripts might no longer build
+info: uninstalling toolchain stable-x86_64-pc-windows-msvc
+info: toolchain stable-x86_64-pc-windows-msvc uninstalled
+PS C:\Users\Sanjeev\OneDrive\Desktop\Official fille\3CSE1(Official)\7th Semester\AI_Agent\career-agent\ui> rustup toolchain install stable
+
+info: syncing channel updates for stable-x86_64-pc-windows-msvc
+info: latest update on 2026-07-09 for version 1.97.0 (2d8144b78 2026-07-07)
+info: downloading 6 components
+        cargo installed                        9.70 MiB
+       clippy installed                        4.05 MiB
+    rust-docs installed                       22.75 MiB
+     rust-std installed                       21.50 MiB
+        rustc installed                       68.94 MiB
+      rustfmt installed                        2.46 MiB                                                                                   
+  stable-x86_64-pc-windows-msvc installed - rustc 1.97.0 (2d8144b78 2026-07-07)
+
+info: checking for self-update (current version: 1.29.0)
+PS C:\Users\Sanjeev\OneDrive\Desktop\Official fille\3CSE1(Official)\7th Semester\AI_Agent\career-agent\ui> rustup default stable
+info: using existing install for stable-x86_64-pc-windows-msvc
+info: default toolchain set to stable-x86_64-pc-windows-msvc
+
+  stable-x86_64-pc-windows-msvc unchanged - rustc 1.97.0 (2d8144b78 2026-07-07)
+
+>>cargo --version
+>>rustc --version
+
+
+
+
+>>>>>>>>rustup update
+cd "C:\Users\Sanjeev\OneDrive\Desktop\Official fille\3CSE1(Official)\7th Semester\AI_Agent\career-agent\ui\carrier-agent\src-tauri"
+dir
+ cargo clean
+ cargo update
+ cargo build
+ cd ..
+ npm run tauri dev
