@@ -1,3 +1,5 @@
+import { ResumeMetadata } from "../resume/types/resume";
+
 export interface Profile {
   personal: {
     fullName: string;
@@ -27,5 +29,5 @@ export interface Profile {
 
   skills: string[];
 
-  resume: File | null;
+  resume: ResumeMetadata | null;
 }

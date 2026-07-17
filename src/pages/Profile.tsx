@@ -1,15 +1,18 @@
 import SectionCard from "../components/profile/SectionCard";
 import TextInput from "../components/profile/TextInput";
 import TextArea from "../components/profile/TextArea";
-import FileUpload from "../components/profile/FileUpload";
 import SkillInput from "../components/profile/SkillInput";
 import SaveButton from "../components/profile/SaveButton";
 
 import { saveProfile } from "../services/profileStorage";
 import { useProfile } from "../context/ProfileContext";
 
+import ResumeUploader from "../resume/components/ResumeUploader";
+import { useResume } from "../resume/hooks/useResume";
+
 export default function Profile() {
   const { profile, setProfile } = useProfile();
+  const { resume, setResume } = useResume();
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">
@@ -298,12 +301,12 @@ export default function Profile() {
         description="Upload your latest resume."
       >
         <div className="max-w-xl">
-          <FileUpload />
+          <ResumeUploader />
         </div>
       </SectionCard>
 
       {/* Save */}
-      <div className="flex justify-end">
+      <div className="flex justify-end gap-3">
         <SaveButton
           onClick={() => {
             saveProfile(profile);
@@ -311,6 +314,13 @@ export default function Profile() {
             console.log(profile);
           }}
         />
+
+        <button
+          onClick={() => setResume(null)}
+          className="px-6 py-3 rounded-xl bg-red-600 text-white font-semibold shadow-md hover:bg-red-700 transition duration-200"
+        >
+          Delete Resume
+        </button>
       </div>
 
     </div>
