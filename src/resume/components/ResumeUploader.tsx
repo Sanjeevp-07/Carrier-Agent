@@ -1,19 +1,30 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
+
 import { useResume } from "../hooks/useResume";
 
-export default function ResumeUploader() {
-  const { resume, setResume } = useResume();
+import ResumeCard from "./ResumeCard";
+import ExtractedTextViewer from "./ExtractedTextViewer";
 
-  const handleUpload = (e: ChangeEvent<HTMLInputElement>) => {
+export default function ResumeUploader() {
+  const { resume, setResume, uploadResume } = useResume();
+
+  const [rawText, setRawText] = useState("");
+
+  const handleUpload = async (
+    e: ChangeEvent<HTMLInputElement>
+  ) => {
     const file = e.target.files?.[0];
 
     if (!file) return;
 
-    setResume({
-      fileName: file.name,
-      uploadedAt: new Date().toISOString(),
-      size: file.size,
-    });
+    try {
+      const result = await uploadResume(file);
+
+      setRawText(result.rawText);
+    } catch (error) {
+      console.error("Resume Processing Failed:", error);
+      setRawText("");
+    }
   };
 
   return (
@@ -25,19 +36,17 @@ export default function ResumeUploader() {
       />
 
       {resume && (
-        <div className="border rounded-lg p-4">
-          <h3 className="font-semibold">{resume.fileName}</h3>
+        <ResumeCard
+          resume={resume}
+          onDelete={() => {
+            setResume(null);
+            setRawText("");
+          }}
+        />
+      )}
 
-          <p>
-            {(resume.size / 1024).toFixed(2)} KB
-          </p>
-
-          <p>
-            Uploaded:
-            {" "}
-            {new Date(resume.uploadedAt).toLocaleString()}
-          </p>
-        </div>
+      {rawText && (
+        <ExtractedTextViewer text={rawText} />
       )}
     </div>
   );

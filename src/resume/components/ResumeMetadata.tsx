@@ -6,20 +6,25 @@ interface Props {
 
 export default function ResumeMetadata({ resume }: Props) {
   return (
-    <div className="space-y-2 text-sm">
-      <p>
-        <span className="font-medium">File:</span> {resume.fileName}
-      </p>
+    <div className="space-y-3 text-sm">
+      <div className="flex justify-between border-b border-zinc-700 pb-2">
+        <span className="text-zinc-400">File Name</span>
+        <span className="font-medium text-white">{resume.fileName}</span>
+      </div>
 
-      <p>
-        <span className="font-medium">Size:</span>{" "}
-        {(resume.size / 1024).toFixed(2)} KB
-      </p>
+      <div className="flex justify-between border-b border-zinc-700 pb-2">
+        <span className="text-zinc-400">File Size</span>
+        <span className="text-white">
+          {(resume.size / 1024).toFixed(2)} KB
+        </span>
+      </div>
 
-      <p>
-        <span className="font-medium">Uploaded:</span>{" "}
-        {new Date(resume.uploadedAt).toLocaleString()}
-      </p>
+      <div className="flex justify-between">
+        <span className="text-zinc-400">Uploaded On</span>
+        <span className="text-white">
+          {new Date(resume.uploadedAt).toLocaleString()}
+        </span>
+      </div>
     </div>
   );
 }

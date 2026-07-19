@@ -8,11 +8,10 @@ import { saveProfile } from "../services/profileStorage";
 import { useProfile } from "../context/ProfileContext";
 
 import ResumeUploader from "../resume/components/ResumeUploader";
-import { useResume } from "../resume/hooks/useResume";
+
 
 export default function Profile() {
   const { profile, setProfile } = useProfile();
-  const { resume, setResume } = useResume();
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">
@@ -27,6 +26,16 @@ export default function Profile() {
           Manage your personal information and resume.
         </p>
       </div>
+
+      {/* Resume */}
+      <SectionCard
+        title="Resume"
+        description="Upload your latest resume."
+      >
+        <div className="max-w-xl">
+          <ResumeUploader />
+        </div>
+      </SectionCard>
 
       {/* Personal Information */}
       <SectionCard
@@ -295,15 +304,7 @@ export default function Profile() {
         />
       </SectionCard>
 
-      {/* Resume */}
-      <SectionCard
-        title="Resume"
-        description="Upload your latest resume."
-      >
-        <div className="max-w-xl">
-          <ResumeUploader />
-        </div>
-      </SectionCard>
+      
 
       {/* Save */}
       <div className="flex justify-end gap-3">
@@ -314,13 +315,6 @@ export default function Profile() {
             console.log(profile);
           }}
         />
-
-        <button
-          onClick={() => setResume(null)}
-          className="px-6 py-3 rounded-xl bg-red-600 text-white font-semibold shadow-md hover:bg-red-700 transition duration-200"
-        >
-          Delete Resume
-        </button>
       </div>
 
     </div>
